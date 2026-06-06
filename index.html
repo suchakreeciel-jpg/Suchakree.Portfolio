@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suchakree Sriboonruang — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-base: #f8fafc;
+    --surface: rgba(255, 255, 255, 0.75);
+    --surface-solid: #ffffff;
+    --surface-hover: rgba(255, 255, 255, 0.95);
+    --border: rgba(255, 255, 255, 0.5);
+    --border-strong: rgba(0, 0, 0, 0.08);
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --text-soft: #94a3b8;
+    
+    /* Vibrant Accents */
+    --accent-primary: #4f46e5;
+    --accent-secondary: #ec4899;
+    --accent-tertiary: #0ea5e9;
+    --gradient-text: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), #f59e0b);
+    --gradient-bg: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(236, 72, 153, 0.1));
+    
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 32px;
+    
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ── BACKGROUND ORBS (Glassmorphism effect) ── */
+  .bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.6;
+    animation: float 20s ease-in-out infinite alternate;
+  }
+  .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: rgba(79, 70, 229, 0.3); }
+  .orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: rgba(236, 72, 153, 0.25); animation-delay: -5s; }
+  .orb-3 { top: 40%; left: 40%; width: 30vw; height: 30vw; background: rgba(14, 165, 233, 0.2); animation-delay: -10s; }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 50px) scale(1.1); }
+  }
+
+  /* ── MAIN CONTAINER ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ── GLASS CARD COMPONENT ── */
+  .glass-card {
+    background: var(--surface);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-glass);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    background: var(--surface-hover);
+  }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    padding: 80px 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 64px;
+    margin-bottom: 40px;
+  }
+
+  .hero-left { flex: 1; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-solid);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-primary);
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 24px;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--accent-secondary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-secondary);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(64px, 8vw, 110px);
+    line-height: 0.85;
+    letter-spacing: 0.02em;
+    color: var(--text-main);
+    margin-bottom: 16px;
+  }
+  .hero-name span {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-subtitle .dot { color: var(--text-soft); }
+
+  .hero-bio {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .hero-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    background: var(--surface-solid);
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-main);
+    box-shadow: var(--shadow-soft);
+    transition: all 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(-2px);
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 280px;
+  }
+  .contact-card {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: var(--gradient-bg);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    color: var(--accent-primary);
+  }
+  .contact-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .contact-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-main);
+  }
+
+  /* ── FLOATING TAB NAV ── */
+  .nav-container {
+    position: sticky;
+    top: 24px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+  .tab-nav {
+    display: inline-flex;
+    background: var(--surface);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  }
+
+  .tab-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-radius: 100px;
+    transition: all 0.3s ease;
+  }
+  .tab-btn .tab-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--border-strong);
+    color: var(--text-muted);
+    border-radius: 100px;
+    padding: 2px 8px;
+    transition: all 0.3s ease;
+  }
+  .tab-btn:hover { color: var(--text-main); }
+  .tab-btn.active {
+    background: var(--surface-solid);
+    color: var(--accent-primary);
+    box-shadow: var(--shadow-soft);
+  }
+  .tab-btn.active .tab-num {
+    background: var(--accent-primary);
+    color: white;
+  }
+
+  /* ── PANELS ── */
+  .panel { display: none; padding-bottom: 100px; }
+  .panel.active {
+    display: block;
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION HEADING ── */
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 5vw, 64px);
+    color: var(--text-main);
+    line-height: 1;
+  }
+
+  /* ══ ABOUT ══ */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 24px;
+    margin-bottom: 60px;
+  }
+  .bento-item { padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+  .bento-wide { grid-column: span 2; }
+  
+  .bento-icon { font-size: 32px; margin-bottom: 16px; background: var(--gradient-text); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .bento-eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-secondary); margin-bottom: 12px; }
+  .bento-title { font-size: 22px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; line-height: 1.3; }
+  .bento-text { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+  .skills-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+  /* ══ EXPERIENCE ══ */
+  .timeline { position: relative; max-width: 800px; margin: 0 auto; }
+  .timeline::before { content: ''; position: absolute; left: 24px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary), transparent); border-radius: 2px; }
+  .timeline-item { position: relative; padding-left: 72px; margin-bottom: 40px; }
+  .timeline-dot { position: absolute; left: 17px; top: 24px; width: 16px; height: 16px; background: var(--surface-solid); border: 3px solid var(--accent-primary); border-radius: 50%; box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.1); z-index: 2; }
+  
+  .exp-card { padding: 32px; }
+  .exp-type { display: inline-block; background: var(--gradient-bg); color: var(--accent-primary); font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; border-radius: 100px; padding: 6px 14px; margin-bottom: 16px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .exp-role { font-size: 22px; font-weight: 700; color: var(--text-main); }
+  .exp-company { font-size: 16px; font-weight: 500; color: var(--accent-secondary); margin-top: 4px; }
+  .exp-date { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-muted); background: var(--surface-solid); border: 1px solid var(--border-strong); border-radius: 100px; padding: 6px 16px; }
+  .exp-body { font-size: 15.5px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+  .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .exp-tag { font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 500; background: var(--surface-solid); border: 1px solid var(--border-strong); border-radius: 8px; padding: 6px 12px; color: var(--text-muted); transition: all 0.2s; }
+
+  /* ══ PROJECTS (Horizontal Layout) ══ */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* แถวละ 1 Widget เป็นสี่เหลี่ยมแนวนอน */
+    gap: 32px;
+  }
+  
+  .proj-card {
+    display: flex;
+    flex-direction: row; /* จัดวาง Content และ Image แบบแนวนอน */
+    padding: 0; /* ลบ padding ออกจาก card เพื่อให้รูปชิดขอบ */
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  /* --- HOVER EFFECT: โทนสีสบายตา (Soft Sky Blue) --- */
+  .proj-card:hover {
+    background: rgba(240, 249, 255, 0.95);
+    border-color: rgba(186, 230, 253, 0.8);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(14, 165, 233, 0.12);
+  }
+
+  /* Content ฝั่งซ้าย */
+  .proj-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Image ฝั่งขวา */
+  .proj-image-wrapper {
+    width: 40%; /* กำหนดสัดส่วนฝั่งขวา */
+    position: relative;
+    border-left: 1px solid var(--border);
+    overflow: hidden;
+    background-color: #e2e8f0; /* สีพื้นหลังชั่วคราว */
+  }
+
+  .proj-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.6s ease;
+  }
+
+  /* ลูกเล่นซูมรูปภาพเมื่อ Hover */
+  .proj-card:hover .proj-image-wrapper img {
+    transform: scale(1.05);
+  }
+  
+  .proj-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-soft);
+    margin-bottom: 12px;
+    transition: color 0.3s ease;
+  }
+  .proj-card:hover .proj-number { color: #0284c7; }
+  
+  .proj-title {
+    font-size: 24px; /* ปรับขนาดให้ใหญ่ขึ้นเล็กน้อยสำหรับแนวนอน */
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 16px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+  }
+  .proj-card:hover .proj-title { color: #0369a1; }
+  
+  .proj-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  
+  .proj-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .proj-tag {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--surface-solid);
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+  }
+  .proj-card:hover .proj-tag { background: rgba(255, 255, 255, 0.9); color: #0369a1; }
+  
+  .proj-deco {
+    position: absolute;
+    bottom: -10px; right: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: rgba(0,0,0,0.03);
+    line-height: 1;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 0.4s ease;
+  }
+  .proj-card:hover .proj-deco { color: rgba(14, 165, 233, 0.08); transform: scale(1.05); }
+
+  /* ── RESPONSIVE DESIGN ── */
+  @media (max-width: 992px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+    .bento-wide { grid-column: span 2; }
+    .hero { flex-direction: column; text-align: center; gap: 40px; padding: 40px 0; }
+    .hero-subtitle { justify-content: center; }
+    .hero-bio { margin: 0 auto 32px; }
+    .hero-chips { justify-content: center; }
+    .hero-right { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+    
+    /* ปรับ Projects Tablet */
+    .proj-image-wrapper { width: 35%; }
+    .proj-content { padding: 32px; }
+  }
+
+  @media (max-width: 768px) {
+    .bento-grid { grid-template-columns: 1fr; }
+    .bento-wide { grid-column: span 1; }
+    .hero-right { grid-template-columns: 1fr; }
+    .timeline { padding-left: 0; }
+    .timeline::before { left: 16px; }
+    .timeline-item { padding-left: 48px; }
+    .timeline-dot { left: 9px; width: 14px; height: 14px; }
+    
+    /* ปรับ Projects Mobile ให้รูปอยู่ด้านบน */
+    .proj-card { flex-direction: column; }
+    .proj-image-wrapper { 
+      width: 100%; 
+      height: 220px; 
+      border-left: none; 
+      border-bottom: 1px solid var(--border); 
+    }
+    .proj-image-wrapper img { position: relative; }
+    .proj-content { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Animated Background Orbs -->
+<div class="bg-orb orb-1"></div>
+<div class="bg-orb orb-2"></div>
+<div class="bg-orb orb-3"></div>
+
+<div class="container">
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Digital Service Innovation · KMUTT</div>
+      <div class="hero-name">SUCHAKREE<br><span>SRIBOONRUANG</span></div>
+     
+
+      
+    </div>
+
+    <div class="hero-right">
+      <div class="glass-card contact-card">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">suchakree.ciel@gmail.com</div>
+        </div>
+      </div>
+      <div class="glass-card contact-card">
+        <div class="contact-icon">☏</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">(+66) 061-501-7711</div>
+        </div>
+      </div>
+      <div class="glass-card contact-card">
+        <div class="contact-icon">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">SUCHAKREE SRIBOONRUANG</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FLOATING TAB NAV -->
+  <div class="nav-container">
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('about', this)">
+        About Me <span class="tab-num">01</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('experience', this)">
+        Experience <span class="tab-num">02</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('projects', this)">
+        Projects <span class="tab-num">03</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ABOUT PANEL -->
+  <section id="panel-about" class="panel active">
+    <!-- เนื้อหา About (เหมือนเดิม) -->
+    <div class="section-header">
+      <div class="section-label">01 / Who I Am</div>
+      <div class="section-title">ABOUT ME</div>
+    </div>
+
+    <div class="bento-grid">
+      <div class="glass-card bento-item bento-wide">
+        <div class="bento-eyebrow">Background</div>
+        <div class="bento-title">Digital Service Innovation Graduate</div>
+        <div class="bento-text">
+          Digital Service Innovation graduate with hands-on experience spanning IT support, UX design, and digital strategy. Across three internships — at Learn Corporation, Sasin School of Management, and Chaopraya Mahanakorn — I have contributed across the full product lifecycle, from requirements analysis and user research through to prototyping and system implementation. I thrive at the intersection of business objectives and user needs, and am seeking opportunities to deliver meaningful, high-impact digital experiences.
+        </div>
+      </div>
+      
+      <div class="glass-card bento-item">
+        <div class="bento-icon">⚡</div>
+        <div class="bento-eyebrow">Personality</div>
+        <div class="bento-title">ESTP Profile</div>
+        <div class="bento-text">I move fast, sit well with ambiguity, and do my sharpest work where analytical rigor meets creative instinct.</div>
+      </div>
+
+      <div class="glass-card bento-item">
+        <div class="bento-icon">🎓</div>
+        <div class="bento-eyebrow">Education</div>
+        <div class="bento-title">KMUTT</div>
+        <div class="bento-text">Faculty of Information Technology<br><strong>Digital Service Innovation</strong><br>Class of 2026<br>GPAX 3.46</div>
+      </div>
+
+      <div class="glass-card bento-item bento-wide">
+        <div class="bento-eyebrow">Core Strengths</div>
+        <div class="bento-title">Personal Skills</div>
+        <div class="skills-wrapper" style="margin-top: 16px;">
+          <div style="display:flex; flex-wrap:wrap; gap:12px;">
+             <span class="chip" style="background:var(--surface-solid)">🧩 Adaptability</span>
+             <span class="chip" style="background:var(--surface-solid)">🤝 Collaboration</span>
+             <span class="chip" style="background:var(--surface-solid)">🗣️ Communication</span>
+             <span class="chip" style="background:var(--surface-solid)">💡 Problem-Solving</span>
+             <span class="chip" style="background:var(--surface-solid)">🎨 Creativity (Figma)</span>
+             <span class="chip" style="background:var(--surface-solid)">⏱️ Time Management</span>
+             <span class="chip" style="background:var(--surface-solid)">🔍 Technical mindset</span>
+             <span class="chip" style="background:var(--surface-solid)">📊 Digital-specific</span>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE PANEL -->
+  <section id="panel-experience" class="panel">
+    <!-- เนื้อหา Experience (เหมือนเดิม) -->
+    <div class="section-header">
+      <div class="section-label">02 / Work History</div>
+      <div class="section-title">EXPERIENCE</div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass-card exp-card">
+          <div class="exp-type">Internship · IT Support</div>
+          <div class="exp-header">
+            <div><div class="exp-role">IT Application Support</div><div class="exp-company">LEARN Corporation Public Co., Ltd.</div></div>
+            <div class="exp-date">Nov 2025 – Apr 2026</div>
+          </div>
+          <div class="exp-body">Managed end-to-end service requests across Microsoft Dynamics NAV, Kissflow, Tableau, Jira, and Lark within a fast-paced enterprise environment. Served as a key liaison between internal users and technical teams, translating complex user issues into precise, actionable specifications for development and infrastructure departments to ensure seamless operational continuity.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Dynamics NAV</span> <span class="exp-tag">Jira</span> <span class="exp-tag">Tableau</span> <span class="exp-tag">ERP Tier 1</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass-card exp-card">
+          <div class="exp-type">Internship · EdTech</div>
+          <div class="exp-header">
+            <div><div class="exp-role">EdTech & Learning Experience Design</div><div class="exp-company">Sasin School of Management</div></div>
+            <div class="exp-date">Nov 2024 – Oct 2025</div>
+          </div>
+          <div class="exp-body">Managed and optimised Sasin Connect+, an internal communication platform, ensuring content accuracy, UI consistency, and a seamless user experience across the site. Supported EMBA program development within the LMS by building structured, accessible course pages using HTML. Designed interactive learning modules with Articulate 360 to drive learner engagement and knowledge retention, and contributed to Moodle plugin customisation to streamline content delivery for faculty and students.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Moodle LMS</span> <span class="exp-tag">UX Design</span> <span class="exp-tag">HTML/CSS</span> <span class="exp-tag">Articulate 360</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="glass-card exp-card">
+          <div class="exp-type">Internship · Digital Marketing</div>
+          <div class="exp-header">
+            <div><div class="exp-role">Digital Marketing</div><div class="exp-company">Chao Phraya Mahanakorn PCL</div></div>
+            <div class="exp-date">May 2024 – Jun 2024</div>
+          </div>
+          <div class="exp-body">Supported the marketing and content team at Chaopraya Mahanakorn in executing high-impact seasonal promotional campaigns for residential projects. Contributed to concept development and content coordination with the creative team, and managed on-site production encompassing photography, videography, and event preparation. Oversaw website content updates and UI layout refinements to strengthen digital presence and ensure a consistent brand experience for prospective buyers.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Content Strategy</span> <span class="exp-tag">Campaign Design</span> <span class="exp-tag">Web UI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS PANEL -->
+  <section id="panel-projects" class="panel">
+    <div class="section-header">
+      <div class="section-label">03 / Selected Work</div>
+      <div class="section-title">PROJECTS</div>
+    </div>
+
+    <div class="projects-grid">
+      
+      <!-- Project 01 -->
+      <div class="glass-card proj-card">
+        <div class="proj-content">
+          <div class="proj-number">PROJECT 01</div>
+          <div class="proj-title">Sasin Connect+ Learning Content Development</div>
+          <div class="proj-desc">
+            Managed and maintained digital learning content for Sasin Connect+, supporting MBA and EMBA programs and ensuring a consistent, high-quality experience for learners. Partnered with the Instructional Design team to structure and migrate course materials into Moodle LMS, improving content accessibility and navigation across the platform. Developed interactive learning activities using H5P to increase learner engagement and modernise the online course experience. Applied custom HTML and CSS within Moodle to refine layout, visual consistency, and usability of the learning environment.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Moodle LMS</span>
+            <span class="proj-tag">H5P</span>
+            <span class="proj-tag">HTML/CSS</span>
+            <span class="proj-tag">UX/UI</span>
+          </div>
+          <div class="proj-deco">LMS</div>
+        </div>
+        <!-- ฝั่งขวา ใส่รูปภาพตรงนี้ -->
+        <div class="proj-image-wrapper">
+          <img src="project01.png" alt="Sasin Project Preview">
+        </div>
+      </div>
+
+      <!-- Project 02 -->
+      <div class="glass-card proj-card">
+        <div class="proj-content">
+          <div class="proj-number">PROJECT 02</div>
+          <div class="proj-title">IT Application Support (Tier 1)</div>
+          <div class="proj-desc">
+            Managed high-volume service requests by triaging and resolving cross-platform issues, translating complex user requirements into clear, actionable technical specifications for the development team. Diagnosed and resolved critical ERP issues within Microsoft Dynamics NAV across PO, PR, and RC entries, and audited approval workflows to identify bottlenecks and reduce business process delays. Bridged cross-functional communication between Infrastructure and Data Analytics teams by filtering and prioritising support tickets, aligning user-reported issues with engineering solutions. Provided technical support for the "Learn Anywhere" application across Ondemand branches and produced data reports on course progress and completion metrics to inform operational decisions.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">ERP</span>
+            <span class="proj-tag">Jira</span>
+            <span class="proj-tag">Data Reporting</span>
+          </div>
+          <div class="proj-deco">ERP</div>
+        </div>
+        <!-- ฝั่งขวา ใส่รูปภาพตรงนี้ -->
+        <div class="proj-image-wrapper">
+          <img src="project02.png" alt="IT Support Project Preview">
+        </div>
+      </div>
+
+      <!-- Project 03 -->
+      <div class="glass-card proj-card">
+        <div class="proj-content">
+          <div class="proj-number">PROJECT 03</div>
+          <div class="proj-title">Web App Development — Lazada Redesign</div>
+          <div class="proj-desc">
+            Conducted user research by developing research assumptions and gathering data via Google Forms to support a redesign initiative for the Lazada application. Analysed findings to identify key user pain points and translated insights into prototype designs, with a focus on live pages and core features to improve the overall user experience.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Figma</span>
+            <span class="proj-tag">Prototyping</span>
+            <span class="proj-tag">UX Research</span>
+          </div>
+          <div class="proj-deco">UX</div>
+        </div>
+        <!-- ฝั่งขวา ใส่รูปภาพตรงนี้ -->
+        <div class="proj-image-wrapper">
+          <img src="project03.png" alt="Lazada Redesign Preview">
+        </div>
+      </div>
+
+      <!-- Project 04 -->
+      <div class="glass-card proj-card">
+        <div class="proj-content">
+          <div class="proj-number">PROJECT 04</div>
+          <div class="proj-title">Digital Solutions — Bolt App PM</div>
+          <div class="proj-desc">
+            Led a Digital Project Management initiative focused on redesigning the Bolt application, encompassing budget estimation, resource allocation, and timeline management. Applied project planning frameworks to optimise the balance between cost, time, and deliverable quality.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Agile</span>
+            <span class="proj-tag">Project Management</span>
+            <span class="proj-tag">UX/UI</span>
+          </div>
+          <div class="proj-deco">PM</div>
+        </div>
+        <!-- ฝั่งขวา ใส่รูปภาพตรงนี้ -->
+        <div class="proj-image-wrapper">
+          <img src="project04.png" alt="Bolt App PM Preview">
+        </div>
+      </div>
+
+      <!-- Project 05 -->
+      <div class="glass-card proj-card">
+        <div class="proj-content">
+          <div class="proj-number">PROJECT 05</div>
+          <div class="proj-title">Bangkok Business Challenge 2025 powered by SCGC</div>
+          <div class="proj-desc">
+            I served as an event staff member for the Bangkok Business Challenge 2025 powered by SCGC, where I managed the competition’s scoring operations. My responsibilities included inputting and validating judges’ evaluations in real time, ensuring system accuracy and synchronization across the platform. I also monitored score submissions from senior executives of leading corporations, while organizing and controlling competition files to maintain reliability. This role required strong attention to detail and technical proficiency in data management and system monitoring, ensuring a seamless and disruption-free experience for participants nationwide.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Design Innovation</span>
+            <span class="proj-tag">Healthcare</span>
+            <span class="proj-tag">UX/UI</span>
+          </div>
+          <div class="proj-deco">DI</div>
+        </div>
+        <!-- ฝั่งขวา ใส่รูปภาพตรงนี้ -->
+        <div class="proj-image-wrapper">
+          <img src="project05.png" alt="Hatch KMUTT Preview">
+        </div>
+      </div>
+
+      <!-- Project 06 -->
+      <div class="glass-card proj-card">
+        <div class="proj-content">
+          <div class="proj-number">PROJECT 06</div>
+          <div class="proj-title">Chaopraya Mahanakorn Internship PROJECT</div>
+          <div class="proj-desc">
+            Embedded within the Digital Marketing team, contributing to concept development and promotional campaign execution for real estate projects in collaboration with the graphic design department. Designed and launched resident engagement campaigns, including interactive online activities with incentive-based mechanics to drive participation, strengthen community interaction, and foster long-term brand loyalty among current and prospective residents.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">HTML/CSS</span>
+            <span class="proj-tag">Database</span>
+            <span class="proj-tag">VS Code</span>
+          </div>
+          <div class="proj-deco">DEV</div>
+        </div>
+        <!-- ฝั่งขวา ใส่รูปภาพตรงนี้ -->
+        <div class="proj-image-wrapper">
+          <img src="project06.png" alt="Programming Project Preview">
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => {
+      p.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+    
+    // Smooth scroll offset
+    const y = document.getElementById('panel-' + id).getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
