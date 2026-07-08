@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suchakree Sriboonruang — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─── */
+:root {
+  --ink:     #1A1A18;
+  --paper:   #FAFAF7;
+  --warm:    #F0EBE1;
+  --rule:    #D6D1C8;
+  --red:     #FF4D1C;
+  --muted:   #6B6860;
+  --caption: #9B9890;
+  --white:   #FFFFFF;
+  --r: 4px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── TICKER ─── */
+.ticker-wrap {
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  border-bottom: 1px solid var(--ink);
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+.ticker-track {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: ticker 28s linear infinite;
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  font: 700 11px 'Space Mono';
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--paper);
+  height: 38px;
+}
+.ticker-item::after {
+  content: '◆';
+  font-size: 7px;
+  color: var(--red);
+}
+
+/* ─── SITE HEADER ─── */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.site-logo {
+  font: 400 13px 'Space Mono';
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.site-logo span { color: var(--red); }
+.site-meta {
+  font: 400 11px 'Space Mono';
+  letter-spacing: 0.06em;
+  color: var(--caption);
+  text-transform: uppercase;
+}
+
+/* ─── HERO ─── */
+.hero {
+  position: relative;
+  padding: 0 48px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-bg-name {
+  position: absolute;
+  left: -12px;
+  top: -30px;
+  font: 400 280px/1 'Bebas Neue';
+  letter-spacing: -0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--rule);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 0;
+  width: 100%;
+  padding-bottom: 52px;
+  padding-top: 160px;
+  align-items: end;
+}
+
+.hero-left {}
+
+.hero-index {
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-index::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--red);
+}
+
+.hero-name {
+  font: 400 clamp(72px, 11vw, 148px) 'Bebas Neue';
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.hero-name .accent { color: var(--red); }
+
+.hero-bio {
+  max-width: 540px;
+  font: 300 16px/1.9 'DM Sans';
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.hero-bio strong { font-weight: 600; color: var(--ink); }
+
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  padding: 6px 14px;
+  font: 500 12px 'DM Sans';
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, border-color 0.2s;
+}
+.chip:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.hero-right {
+  border-left: 1px solid var(--rule);
+  padding: 0 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-self: stretch;
+  justify-content: flex-end;
+  padding-bottom: 0;
+}
+
+/* ─── เพิ่มเฟรมรูปภาพ ─── */
+.hero-image-frame {
+  width: 100%;
+  max-width: 280px;
+  margin-left: auto;
+  margin-bottom: 20px;
+  aspect-ratio: 1 / 1;
+  border: 4px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--warm);
+  box-shadow: 8px 8px 0 rgba(26, 26, 24, 0.06);
+}
+.hero-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.contact-row {
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.contact-row:last-child { border-bottom: 1px solid var(--rule); }
+.cr-label {
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--caption);
+  padding-top: 2px;
+}
+.cr-val {
+  font: 400 14px 'DM Sans';
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* ─── NAV ─── */
+.nav-strip {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  padding: 0 48px;
+  gap: 0;
+}
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px 14px;
+  font: 500 13px 'DM Sans';
+  color: var(--muted);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  letter-spacing: 0.01em;
+  transition: color 0.2s, border-color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-family: 'Space Mono';
+}
+.nav-tab:hover { color: var(--ink); }
+.nav-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--red);
+  font-weight: 700;
+}
+.nav-num {
+  font: 400 10px 'Space Mono';
+  color: var(--caption);
+}
+.nav-tab.active .nav-num { color: var(--red); }
+
+/* ─── MAIN ─── */
+.main { padding: 0 48px 80px; }
+
+/* ─── PANEL ─── */
+.panel { display: none; animation: fadeUp 0.4s ease both; }
+.panel.active { display: block; }
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(16px); }
+  to   { opacity:1; transform: none; }
+}
+
+/* ─── SECTION HEADER ─── */
+.sh {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 48px;
+}
+.sh-num {
+  font: 400 80px 'Bebas Neue';
+  color: var(--rule);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.sh-right {}
+.sh-label {
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.sh-title {
+  font: 400 clamp(40px,5vw,72px) 'Bebas Neue';
+  line-height: 0.9;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+
+/* ─── ABOUT GRID ─── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+}
+.ag-cell {
+  padding: 32px 28px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  transition: background 0.2s;
+}
+.ag-cell:hover { background: var(--warm); }
+.ag-cell:last-child, .ag-cell:nth-last-child(2), .ag-cell:nth-last-child(3) { border-bottom: none; }
+.ag-cell.span2 { grid-column: span 2; }
+.ag-cell.span3 { grid-column: span 3; border-right: none; }
+.ag-cell:nth-child(3n) { border-right: none; }
+.ag-label {
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ag-label::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: var(--red);
+  flex-shrink: 0;
+}
+.ag-title {
+  font: 400 28px 'Bebas Neue';
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.ag-text {
+  font: 300 14px/1.85 'DM Sans';
+  color: var(--muted);
+}
+.ag-text strong { color: var(--ink); font-weight: 600; }
+.ag-num {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  font: 400 56px 'Bebas Neue';
+  color: var(--warm);
+  line-height: 1;
+  pointer-events: none;
+}
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.sk {
+  padding: 5px 12px;
+  font: 400 12px 'DM Sans';
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  cursor: default;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.sk:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ─── EXPERIENCE ─── */
+.exp-list { display: grid; gap: 0; }
+.exp-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  padding: 40px 0;
+  transition: background 0.2s;
+  position: relative;
+}
+.exp-item:first-child { border-top: 1px solid var(--rule); }
+.exp-item:hover { background: var(--warm); margin: 0 -48px; padding-left: 48px; padding-right: 48px; }
+.exp-left { padding-right: 32px; border-right: 1px solid var(--rule); }
+.exp-date {
+  font: 700 11px 'Space Mono';
+  letter-spacing: 0.08em;
+  color: var(--caption);
+  line-height: 1.7;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.exp-type {
+  display: inline-block;
+  padding: 5px 10px;
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--paper);
+}
+.exp-right { padding-left: 40px; }
+.exp-role {
+  font: 400 38px 'Bebas Neue';
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  margin-bottom: 6px;
+}
+.exp-company {
+  font: 600 13px 'DM Sans';
+  color: var(--red);
+  margin-bottom: 18px;
+  letter-spacing: 0.01em;
+}
+.exp-text {
+  font: 300 14px/1.85 'DM Sans';
+  color: var(--muted);
+  max-width: 680px;
+}
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+}
+.etag {
+  padding: 4px 10px;
+  font: 500 11px 'DM Sans';
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  letter-spacing: 0.02em;
+}
+
+/* ─── PROJECTS ─── */
+.proj-list { display: grid; gap: 0; }
+.proj-item {
+  display: grid;
+  grid-template-columns: 64px 1fr 340px;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: stretch;
+  min-height: 200px;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.proj-item:first-child { border-top: 1px solid var(--rule); }
+.proj-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--red);
+  transition: width 0.3s ease;
+  z-index: 0;
+}
+.proj-item:hover::before { width: 4px; }
+
+.proj-num-col {
+  border-right: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--caption);
+  padding: 24px 0;
+  position: relative;
+  z-index: 1;
+  transition: background 0.3s, color 0.3s;
+}
+.proj-item:hover .proj-num-col {
+  background: var(--red);
+  color: var(--white);
+  border-right-color: var(--red);
+}
+
+.proj-body {
+  padding: 32px 36px;
+  position: relative;
+  z-index: 1;
+}
+.proj-category {
+  font: 700 10px 'Space Mono';
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--caption);
+  margin-bottom: 12px;
+}
+.proj-title {
+  font: 400 clamp(22px, 2.5vw, 32px) 'Bebas Neue';
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.proj-desc {
+  font: 300 13px/1.85 'DM Sans';
+  color: var(--muted);
+  max-width: 500px;
+}
+.proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+}
+.ptag {
+  padding: 4px 10px;
+  font: 500 11px 'DM Sans';
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.proj-item:hover .ptag {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.proj-media {
+  border-left: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  background: var(--warm);
+}
+.proj-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, opacity 0.3s;
+  opacity: 0.85;
+}
+.proj-item:hover .proj-media img { transform: scale(1.04); opacity: 1; }
+.proj-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.pp-abbr {
+  font: 400 56px 'Bebas Neue';
+  color: var(--rule);
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
+}
+.proj-item:hover .pp-abbr { color: var(--red); }
+.pp-sub {
+  font: 400 10px 'Space Mono';
+  letter-spacing: 0.1em;
+  color: var(--caption);
+  text-transform: uppercase;
+}
+
+/* ─── FOOTER ─── */
+.site-footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 36px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-top: 3px solid var(--red);
+}
+.footer-name {
+  font: 400 32px 'Bebas Neue';
+  letter-spacing: 0.04em;
+}
+.footer-name span { color: var(--red); }
+.footer-copy {
+  font: 400 11px 'Space Mono';
+  color: #6B6860;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .site-header, .hero, .nav-strip, .main { padding-left: 28px; padding-right: 28px; }
+  .hero-content { grid-template-columns: 1fr; gap: 32px; padding-top: 100px; }
+  .hero-right { border-left: none; border-top: 1px solid var(--rule); padding-left: 0; padding-top: 28px; }
+  .hero-image-frame { max-width: 220px; margin-left: 0; }
+  .contact-row { grid-template-columns: 80px 1fr; }
+  .proj-item { grid-template-columns: 48px 1fr; min-height: auto; }
+  .proj-media { display: none; }
+  .exp-item:hover { margin: 0 -28px; padding-left: 28px; padding-right: 28px; }
+}
+@media (max-width: 760px) {
+  .site-header { padding: 14px 20px; }
+  .hero { padding: 0 20px; min-height: auto; }
+  .hero-bg-name { font-size: 120px; top: 0; }
+  .hero-content { padding-top: 60px; }
+  .hero-image-frame { max-width: 160px; }
+  .nav-strip { padding: 0 20px; overflow-x: auto; }
+  .main { padding: 0 20px 60px; }
+  .about-grid { display: flex; flex-direction: column; border: none; gap: 0; }
+  .ag-cell { border: 1px solid var(--rule); margin-bottom: -1px; }
+  .ag-cell.span2, .ag-cell.span3 { grid-column: span 1; }
+  .exp-item { grid-template-columns: 1fr; }
+  .exp-left { border-right: none; border-bottom: 1px solid var(--rule); padding-bottom: 16px; padding-right: 0; margin-bottom: 16px; }
+  .exp-right { padding-left: 0; }
+  .exp-item:hover { margin: 0 -20px; padding-left: 20px; padding-right: 20px; }
+  .proj-item { grid-template-columns: 40px 1fr; }
+  .site-footer { padding: 28px 20px; }
+  .sh { padding: 36px 0 28px; }
+  .sh-num { font-size: 56px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Suchakree Sriboonruang</span>
+    <span class="ticker-item">King Mongkut’s University of Technology Thonburi · KMUTT</span>
+    <span class="ticker-item">MBTI ESTP</span>
+    <span class="ticker-item">School of Information Technology</span>
+    <span class="ticker-item">Suchakree Sriboonruang</span>
+    <span class="ticker-item">King Mongkut’s University of Technology Thonburi · KMUTT</span>
+    <span class="ticker-item">MBTI ESTP</span>
+    <span class="ticker-item">School of Information Technology</span>
+  </div>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  
+  <div class="site-meta">Digital Service Innovation</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-name" aria-hidden="true">SUCHAKREE</div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-index">Portfolio · Digital Experience</div>
+      <h1 class="hero-name">
+        SUCHAKREE<br>
+        <span class="accent">SRIBOON</span>RUANG
+      </h1>
+    </div>
+    <aside class="hero-right">
+      <!-- เฟรมรูปภาพ -->
+      <div class="hero-image-frame">
+        <img src="IMG_ciel.JPG" alt="cielphoto">
+      </div>
+      <div class="contact-row">
+        <div class="cr-label">Email</div>
+        <div class="cr-val">suchakree.ciel@gmail.com</div>
+      </div>
+      <div class="contact-row">
+        <div class="cr-label">Phone</div>
+        <div class="cr-val">(+66) 061-501-7711</div>
+      </div>
+      <div class="contact-row">
+        <div class="cr-label">LinkedIn</div>
+        <div class="cr-val">Suchakree Sriboonruang</div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav-strip">
+  <button class="nav-tab active" onclick="switchTab('about',this)">About Me <span class="nav-num">01</span></button>
+  <button class="nav-tab" onclick="switchTab('experience',this)">Experience <span class="nav-num">02</span></button>
+  <button class="nav-tab" onclick="switchTab('projects',this)">Projects <span class="nav-num">03</span></button>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ABOUT -->
+  <section id="panel-about" class="panel active">
+    <div class="sh">
+      <div class="sh-num">01</div>
+      <div class="sh-right">
+        <div class="sh-label">Who I Am</div>
+        <div class="sh-title">ABOUT ME</div>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="ag-cell span2">
+        <div class="ag-label">Background</div>
+        <div class="ag-title">Digital Solution Specialist</div>
+        <div class="ag-text">I'm a Digital Service Innovation graduate currently working as a Digital Solution Specialist, where I support enterprise digital transformation and coordinate with external partners to modernize business processes. My path here was shaped by three internships — at Learn Corporation, Sasin School of Management, and Chaopraya Mahanakorn — where I contributed across the full product lifecycle, from requirements analysis and user research through to prototyping and system implementation. I thrive at the intersection of business objectives and user needs, and I'm always excited to explore new ways technology can create meaningful, high-impact digital experiences.</div>
+      </div>
+      <div class="ag-cell">
+        <div class="ag-label">Personality</div>
+        <div class="ag-title">ESTP Profile</div>
+        <div class="ag-text">I move fast, sit well with ambiguity, and do my sharpest work where analytical rigor meets creative instinct. I respect others' time as much as my own — showing up prepared, delivering on commitments, and keeping things moving without waiting to be told twice. Deadlines aren't pressure, they're structure I work with.</div>
+        <div class="ag-num">E</div>
+      </div>
+      <div class="ag-cell">
+        <div class="ag-label">Education</div>
+        <div class="ag-title">KMUTT</div>
+        <div class="ag-text">Faculty of Information Technology<br><strong>Digital Service Innovation</strong><br>Class of 2026 · GPAX 3.45 — Second Class Honours</div>
+        <div class="ag-num">IT</div>
+      </div>
+      <div class="ag-cell">
+        <div class="ag-label">Skills</div>
+        <div class="ag-title">Core Tools</div>
+        <div class="ag-text">Figma · HTML/CSS · Moodle · Articulate 360 · Jira · Tableau · Microsoft Dynamics NAV · Kissflow · Lark · Microsoft Word · Microsoft Excel · Microsoft PowerPoint · Microsoft Teams · Microsoft 365</div>
+        <div class="ag-num">∞</div>
+      </div>
+      <div class="ag-cell span3" style="border-right:none;">
+        <div class="ag-label">Personal Strengths</div>
+        <div class="skill-list">
+          <span class="sk">🧩 Adaptability</span>
+          <span class="sk">🤝 Collaboration</span>
+          <span class="sk">🗣️ Communication</span>
+          <span class="sk">💡 Problem-Solving</span>
+          <span class="sk">🎨 Creativity (Figma)</span>
+          <span class="sk">⏱️ Time Management</span>
+          <span class="sk">🔍 Technical Mindset</span>
+          <span class="sk">📊 Digital Strategy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="panel-experience" class="panel">
+    <div class="sh">
+      <div class="sh-num">02</div>
+      <div class="sh-right">
+        <div class="sh-label">Work History</div>
+        <div class="sh-title">EXPERIENCE</div>
+      </div>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">May 2026<br>Present</div>
+          <div class="exp-type">Business Development</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Digital Solution Specialist</div>
+          <div class="exp-company">Yan Wal Yun Corporation Group Co., Ltd.</div>
+          <div class="exp-text">As part of the organization's push toward Digitalization, I support the coordination between internal teams and Vbix, an external partner leading the company's digital transformation, by preparing and structuring process flow documentation that bridges existing operations with incoming system changes. I also help keep the Business Development team informed on emerging AI trends and applications, translating industry updates into practical insights the team can act on. Beyond the transformation itself, I'm contributing to the early groundwork of a Knowledge Management framework designed to preserve institutional knowledge and support the organization's long-term sustainability.</div>
+          <div class="exp-tags">
+            <span class="etag">Digital Transformation</span><span class="etag">Process Flow Documentation</span><span class="etag">Vendor Coordination</span><span class="etag">Trend Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">Nov 2025<br>Apr 2026</div>
+          <div class="exp-type">IT Support</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">IT Application Support</div>
+          <div class="exp-company">LEARN Corporation Public Co., Ltd.</div>
+          <div class="exp-text">Managed end-to-end service requests across Microsoft Dynamics NAV, Kissflow, Tableau, Jira, and Lark within a fast-paced enterprise environment. Served as a key liaison between internal users and technical teams, translating complex user issues into precise, actionable specifications for development and infrastructure departments to ensure seamless operational continuity.</div>
+          <div class="exp-tags">
+            <span class="etag">Dynamics NAV</span><span class="etag">Jira</span><span class="etag">Tableau</span><span class="etag">ERP Tier 1</span><span class="etag">Kissflow</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">Nov 2024<br>Oct 2025</div>
+          <div class="exp-type">EdTech</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">EdTech &amp; Learning Experience Design</div>
+          <div class="exp-company">The Sasin Graduate Institute of Business Administration of Chulalongkorn University</div>
+          <div class="exp-text">Managed and optimised Sasin Connect+, an internal communication platform, ensuring content accuracy, UI consistency, and a seamless user experience across the site. Supported EMBA program development within the LMS by building structured, accessible course pages using HTML. Designed interactive learning modules with Articulate 360 to drive learner engagement and knowledge retention, and contributed to Moodle plugin customisation to streamline content delivery for faculty and students.</div>
+          <div class="exp-tags">
+            <span class="etag">Moodle LMS</span><span class="etag">UX Design</span><span class="etag">HTML/CSS</span><span class="etag">Articulate 360</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-left">
+          <div class="exp-date">May 2024<br>Jun 2024</div>
+          <div class="exp-type">Marketing</div>
+        </div>
+        <div class="exp-right">
+          <div class="exp-role">Digital Marketing</div>
+          <div class="exp-company">Chaopraya Mahanakorn Public Company Limited</div>
+          <div class="exp-text">Supported the marketing and content team at Chaopraya Mahanakorn in executing high-impact seasonal promotional campaigns for residential projects. Contributed to concept development and content coordination with the creative team, and managed on-site production encompassing photography, videography, and event preparation. Oversaw website content updates and UI layout refinements to strengthen digital presence and ensure a consistent brand experience for prospective buyers.</div>
+          <div class="exp-tags">
+            <span class="etag">Content Strategy</span><span class="etag">Campaign Design</span><span class="etag">Web UI</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="panel-projects" class="panel">
+    <div class="sh">
+      <div class="sh-num">03</div>
+      <div class="sh-right">
+        <div class="sh-label">Selected Work</div>
+        <div class="sh-title">PROJECTS</div>
+      </div>
+    </div>
+    <div class="proj-list">
+
+      <div class="proj-item">
+        <div class="proj-num-col">P — 01</div>
+        <div class="proj-body">
+          <div class="proj-category">LMS</div>
+          <div class="proj-title">Sasin Connect+ Learning Content Development</div>
+          <div class="proj-desc">Managed and maintained digital learning content for Sasin Connect+, supporting MBA and EMBA programs and ensuring a consistent, high-quality experience for learners. Partnered with the Instructional Design team to structure and migrate course materials into Moodle LMS, improving content accessibility and navigation. Developed interactive learning activities using H5P to increase learner engagement and modernise the online course experience. Applied custom HTML and CSS within Moodle to refine layout, visual consistency, and usability.</div>
+          <div class="proj-tags"><span class="ptag">Moodle LMS</span><span class="ptag">H5P</span><span class="ptag">HTML/CSS</span><span class="ptag">UX/UI</span></div>
+        </div>
+        <div class="proj-media">
+          <img src="project01.png" alt="Sasin Project Preview" onerror="this.style.display='none'">
+          
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num-col">P — 02</div>
+        <div class="proj-body">
+          <div class="proj-category">IT Application Support</div>
+          <div class="proj-title">IT Application Support (Tier 1)</div>
+          <div class="proj-desc">Managed high-volume service requests by triaging and resolving cross-platform issues, translating complex user requirements into clear, actionable technical specifications for the development team. Diagnosed and resolved critical ERP issues within Microsoft Dynamics NAV across PO, PR, and RC entries, and audited approval workflows to identify bottlenecks and reduce business process delays. Bridged cross-functional communication between Infrastructure and Data Analytics teams by filtering and prioritising support tickets. Provided technical support for the "Learn Anywhere" application and produced data reports on course progress and completion metrics.</div>
+          <div class="proj-tags"><span class="ptag">ERP</span><span class="ptag">Jira</span><span class="ptag">Data Reporting</span></div>
+        </div>
+        <div class="proj-media">
+          <img src="project02.png" alt="IT Support Project Preview" onerror="this.style.display='none'">
+          
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num-col">P — 03</div>
+        <div class="proj-body">
+          <div class="proj-category">UX Research</div>
+          <div class="proj-title">Web App Development — Lazada Redesign</div>
+          <div class="proj-desc">Conducted user research by developing research assumptions and gathering data via Google Forms to support a redesign initiative for the Lazada application. Analysed findings to identify key user pain points and translated insights into prototype designs, with a focus on live pages and core features to improve the overall user experience.</div>
+          <div class="proj-tags"><span class="ptag">Figma</span><span class="ptag">Prototyping</span><span class="ptag">UX Research</span></div>
+        </div>
+        <div class="proj-media">
+          <img src="project03.png" alt="Lazada Redesign Preview" onerror="this.style.display='none'">
+         
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num-col">P — 04</div>
+        <div class="proj-body">
+          <div class="proj-category">Project Management</div>
+          <div class="proj-title">Digital Solutions — Bolt App PM</div>
+          <div class="proj-desc">Led a Digital Project Management initiative focused on redesigning the Bolt application, encompassing budget estimation, resource allocation, and timeline management. Applied project planning frameworks to optimise the balance between cost, time, and deliverable quality.</div>
+          <div class="proj-tags"><span class="ptag">Agile</span><span class="ptag">Project Management</span><span class="ptag">UX/UI</span></div>
+        </div>
+        <div class="proj-media">
+          <img src="project04.png" alt="Bolt App PM Preview" onerror="this.style.display='none'">
+         
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num-col">P — 05</div>
+        <div class="proj-body">
+          <div class="proj-category">Event Operations</div>
+          <div class="proj-title">Bangkok Business Challenge 2025 powered by SCGC</div>
+          <div class="proj-desc">Served as an event staff member for the Bangkok Business Challenge 2025 powered by SCGC, managing the competition's scoring operations. Responsibilities included inputting and validating judges' evaluations in real time, ensuring system accuracy and synchronization across the platform. Monitored score submissions from senior executives of leading corporations, while organizing and controlling competition files to maintain reliability. This role required strong attention to detail and technical proficiency in data management and system monitoring, ensuring a seamless and disruption-free experience for participants nationwide.</div>
+          <div class="proj-tags"><span class="ptag">Data Management</span><span class="ptag">System Monitoring</span><span class="ptag">Operations</span></div>
+        </div>
+        <div class="proj-media">
+          <img src="project05.png" alt="Bangkok Business Challenge Preview" onerror="this.style.display='none'">
+         
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-num-col">P — 06</div>
+        <div class="proj-body">
+          <div class="proj-category">Digital Marketing</div>
+          <div class="proj-title">Chaopraya Mahanakorn Internship PROJECT</div>
+          <div class="proj-desc">Embedded within the Digital Marketing team, contributing to concept development and promotional campaign execution for real estate projects in collaboration with the graphic design department. Designed and launched resident engagement campaigns, including interactive online activities with incentive-based mechanics to drive participation, strengthen community interaction, and foster long-term brand loyalty among current and prospective residents.</div>
+          <div class="proj-tags"><span class="ptag">Facebook Ads</span><span class="ptag">Tiktok Ads</span><span class="ptag">Analyst</span></div>
+        </div>
+        <div class="proj-media">
+          <img src="project06.png" alt="Programming Project Preview" onerror="this.style.display='none'">
+          
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-name">SUCHAKREE <span>SRIBOONRUANG</span></div>
+  <div class="footer-copy">Digital Service Innovation · KMUTT · 2026</div>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  const nav = document.querySelector('.nav-strip');
+  const y = nav.getBoundingClientRect().top + window.scrollY - 2;
+  window.scrollTo({ top: y, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
