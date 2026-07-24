@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suchakree Sriboonruang — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════ TOKENS — LIGHT & AIRY (READABLE) ═══════════════════ */
+    :root {
+      --bg: #f7f5fc;
+      --bg-alt: #f0edf7;
+      --surface: #ffffff;
+      --surface-2: #faf8ff;
+      --ink: #1e1a2e;
+      --muted: #4a4460;
+      --faint: #7a7391;
+      --border: #ddd8ea;
+      --border-hi: #c5bddb;
+      --gold: #c9a84c;
+      --gold-soft: #dec27a;
+      --crimson: #b84a5e;
+      --violet: #7c5cbf;
+      --sapphire: #4f6ba6;
+      --emerald: #3c8a72;
+      --shadow-sm: 0 2px 14px rgba(30, 26, 46, 0.08);
+      --shadow-md: 0 18px 50px rgba(30, 26, 46, 0.10);
+      --shadow-lg: 0 34px 90px rgba(30, 26, 46, 0.12);
+      --glow-gold: 0 0 0 1px rgba(201, 168, 76, 0.3), 0 8px 30px rgba(201, 168, 76, 0.12);
+      --r-lg: 28px;
+      --r-md: 20px;
+      --r-sm: 12px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: #fff;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .dotfield {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(124, 92, 191, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+      mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, black 0%, transparent 70%);
+    }
+
+    .vignette {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse 90% 60% at 50% -10%, rgba(124, 92, 191, 0.06), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 100% 100%, rgba(184, 74, 94, 0.04), transparent 60%);
+    }
+
+    /* ═══════════════════ GRADIENT MESH BLOBS ═══════════════════ */
+    .mesh {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.15;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+
+    .blob.b1 {
+      width: 520px;
+      height: 520px;
+      background: var(--violet);
+      top: -180px;
+      left: -120px;
+    }
+    .blob.b2 {
+      width: 420px;
+      height: 420px;
+      background: var(--crimson);
+      top: 60px;
+      right: -140px;
+      animation-delay: -4s;
+    }
+    .blob.b3 {
+      width: 380px;
+      height: 380px;
+      background: var(--gold);
+      bottom: -160px;
+      left: 20%;
+      opacity: 0.10;
+      animation-delay: -9s;
+    }
+    .blob.b4 {
+      width: 300px;
+      height: 300px;
+      background: var(--sapphire);
+      bottom: -100px;
+      right: 10%;
+      animation-delay: -13s;
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(30px, -24px) scale(1.08);
+      }
+    }
+
+    /* ═══════════════════ FLOATING NAV — ENHANCED ═══════════════════ */
+    .nav-wrap {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .nav {
+      width: 100%;
+      max-width: 920px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 2px solid transparent;
+      border-radius: 999px;
+      padding: 10px 12px 10px 24px;
+      box-shadow: 0 4px 30px rgba(124, 92, 191, 0.15), 0 1px 8px rgba(124, 92, 191, 0.06);
+      position: relative;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 999px;
+      padding: 2px;
+      background: linear-gradient(120deg, var(--violet), var(--gold), var(--crimson), var(--violet));
+      background-size: 300% 300%;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      animation: borderGlow 4s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes borderGlow {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .nav:hover {
+      box-shadow: 0 8px 40px rgba(124, 92, 191, 0.20), 0 1px 12px rgba(124, 92, 191, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      position: relative;
+    }
+
+    .nav-logo .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--violet), var(--sapphire));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(124, 92, 191, 0.25);
+    }
+
+    .nav-logo .led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4CAF50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.20);
+      animation: blink 2.6s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes blink {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 10px 18px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      position: relative;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--violet), var(--gold));
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover {
+      color: var(--violet);
+      background: rgba(124, 92, 191, 0.08);
+    }
+
+    .nav-links a:hover::after {
+      width: 60%;
+    }
+
+    .nav-cta {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      background: linear-gradient(120deg, var(--violet), var(--sapphire));
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 16px rgba(124, 92, 191, 0.25);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-cta::after {
+      content: '→';
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 6px 30px rgba(124, 92, 191, 0.35);
+      background: linear-gradient(120deg, var(--sapphire), var(--violet));
+    }
+
+    .nav-cta:hover::after {
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        display: none;
+      }
+      .nav {
+        padding: 8px 10px 8px 16px;
+      }
+      .nav-logo {
+        font-size: 14px;
+      }
+      .nav-logo .logo-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+      }
+      .nav-cta {
+        padding: 10px 16px;
+        font-size: 12px;
+      }
+    }
+
+    /* ═══════════════════ SHARED SECTION SCAFFOLD ═══════════════════ */
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      letter-spacing: 0.03em;
+      color: var(--violet);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    .eyebrow .num {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--gold);
+      display: inline-block;
+      box-shadow: 0 0 8px rgba(201, 168, 76, 0.4);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2, .7, .3, 1);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ═══════════════════ HERO ═══════════════════ */
+    .hero {
+      position: relative;
+      padding: 168px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 14px 7px 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--muted);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 26px;
+    }
+
+    .hero-badge .led {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4CAF50;
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.18);
+    }
+
+    .hero-eyebrow-sm {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(48px, 6.4vw, 84px);
+      line-height: 1.02;
+      letter-spacing: 0.01em;
+      margin-bottom: 14px;
+    }
+
+    .hero-title .grad {
+      background: linear-gradient(100deg, var(--violet), var(--sapphire) 45%, var(--crimson) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-role {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      color: var(--violet);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-role::before {
+      content: '';
+      width: 26px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 16.5px;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 540px;
+      margin-bottom: 32px;
+    }
+
+    .hero-sub strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--violet);
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, var(--gold), var(--gold-soft));
+      color: #1A1220;
+      border-color: var(--gold);
+    }
+
+    .btn.primary:hover {
+      box-shadow: var(--glow-gold);
+    }
+
+    /* hero photo card */
+    .hero-visual {
+      position: relative;
+    }
+
+    .photo-card {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(160deg, var(--crimson), var(--violet));
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(247, 245, 252, 0.3) 100%);
+    }
+
+    .float-chip {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      animation: floaty 5s ease-in-out infinite;
+      z-index: 3;
+    }
+
+    .float-chip.c1 {
+      top: -16px;
+      left: -24px;
+      animation-delay: 0s;
+    }
+    .float-chip.c2 {
+      bottom: 70px;
+      right: -30px;
+      animation-delay: -1.6s;
+    }
+    .float-chip.c3 {
+      bottom: -14px;
+      left: 30px;
+      animation-delay: -3.2s;
+    }
+
+    @keyframes floaty {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+      50% {
+        transform: translateY(-10px) rotate(1deg);
+      }
+    }
+
+    /* marquee strip */
+    .marquee-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+      overflow: hidden;
+      background: var(--bg-alt);
+      position: relative;
+      z-index: 1;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      white-space: nowrap;
+      animation: scroll-x 26s linear infinite;
+      width: max-content;
+    }
+
+    @keyframes scroll-x {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .marquee-track span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--faint);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .marquee-track span::after {
+      content: '✦';
+      color: var(--gold);
+      opacity: 0.5;
+      font-size: 10px;
+    }
+
+    /* ═══════════════════ ABOUT — bento ═══════════════════ */
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(32px, 3.8vw, 48px);
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.2, .7, .3, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hi);
+    }
+
+    .card.span2 {
+      grid-column: span 2;
+    }
+    .card.span3 {
+      grid-column: span 3;
+    }
+
+    .card-blob {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      filter: blur(46px);
+      opacity: 0.10;
+      top: -50px;
+      right: -50px;
+    }
+
+    .card.c-violet .card-blob {
+      background: var(--violet);
+    }
+    .card.c-blue .card-blob {
+      background: var(--sapphire);
+    }
+    .card.c-pink .card-blob {
+      background: var(--crimson);
+    }
+    .card.c-gold .card-blob {
+      background: var(--gold);
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      margin-bottom: 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+    }
+
+    .card-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 21px;
+      margin-bottom: 10px;
+      position: relative;
+      color: var(--ink);
+    }
+
+    .card-text {
+      font-size: 13.8px;
+      line-height: 1.9;
+      color: var(--muted);
+      position: relative;
+    }
+
+    .card-text strong {
+      color: var(--violet);
+      font-weight: 600;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+      position: relative;
+    }
+
+    .chip {
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 6px 13px;
+      border-radius: 999px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .chip:hover {
+      border-color: var(--violet);
+      color: var(--violet);
+      background: rgba(124, 92, 191, 0.06);
+    }
+
+    /* ═══════════════════ EXPERIENCE ═══════════════════ */
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.2, .7, .3, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .exp-card.c-violet::before {
+      background: linear-gradient(var(--violet), var(--sapphire));
+    }
+    .exp-card.c-blue::before {
+      background: linear-gradient(var(--sapphire), var(--crimson));
+    }
+    .exp-card.c-pink::before {
+      background: linear-gradient(var(--crimson), var(--gold));
+    }
+    .exp-card.c-gold::before {
+      background: linear-gradient(var(--gold), var(--violet));
+    }
+
+    .exp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hi);
+    }
+
+    .exp-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--faint);
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+    }
+
+    .exp-badge {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--bg-alt);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .exp-role {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 23px;
+      margin-bottom: 4px;
+      color: var(--ink);
+    }
+
+    .exp-company {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--violet);
+      margin-bottom: 14px;
+    }
+
+    .exp-text {
+      font-size: 13.8px;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .etag {
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ═══════════════════ PROJECTS — WITH ICON PLACEHOLDERS ═══════════════════ */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(.2, .7, .3, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+
+    .proj-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-hi);
+    }
+
+    /* 📌 แก้ไขให้สัดส่วนรูปโปรเจกต์เป็น 16:9 และใหญ่ขึ้น */
+    .proj-thumb {
+      aspect-ratio: 16 / 9;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proj-thumb .grad {
+      position: absolute;
+      inset: 0;
+      opacity: 0.85;
+    }
+
+    .proj-thumb.c-violet .grad {
+      background: linear-gradient(135deg, var(--violet), var(--sapphire));
+    }
+    .proj-thumb.c-blue .grad {
+      background: linear-gradient(135deg, var(--sapphire), var(--crimson));
+    }
+    .proj-thumb.c-pink .grad {
+      background: linear-gradient(135deg, var(--crimson), var(--gold));
+    }
+    .proj-thumb.c-gold .grad {
+      background: linear-gradient(135deg, var(--gold), var(--violet));
+    }
+
+    /* รูปภาพในโปรเจกต์ - วางซ้อนทับ gradient */
+    .proj-thumb .proj-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .proj-thumb .proj-image.loaded {
+      opacity: 1;
+    }
+
+    /* ไอคอนสัญลักษณ์กลางภาพ - แสดงเมื่อยังไม่มีรูป */
+    .proj-thumb .placeholder-icon {
+      position: relative;
+      z-index: 2;
+      font-size: 48px;
+      color: rgba(255, 255, 255, 0.7);
+      text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .proj-thumb .placeholder-icon .icon-label {
+      font-size: 11px;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+    }
+
+    /* เมื่อมีรูปภาพ ให้ซ่อนไอคอน */
+    .proj-thumb .proj-image.loaded ~ .placeholder-icon {
+      opacity: 0;
+    }
+
+    .proj-thumb .idx {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      z-index: 3;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 48px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+    }
+
+    .proj-body {
+      padding: 24px 26px 26px;
+    }
+
+    .proj-cat {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 8px;
+    }
+
+    .proj-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 19.5px;
+      line-height: 1.28;
+      margin-bottom: 11px;
+      color: var(--ink);
+    }
+
+    .proj-desc {
+      font-size: 13.2px;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .ptag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 7px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    /* ═══════════════════ CONTACT — gradient CTA ═══════════════════ */
+    .cta-card {
+      position: relative;
+      border-radius: 36px;
+      overflow: hidden;
+      padding: 72px 48px;
+      background: linear-gradient(135deg, #eeebf7, #e8e4f5 50%, #f0edf7);
+      color: var(--ink);
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .cta-mesh {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .cta-mesh .b {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.20;
+    }
+
+    .cta-mesh .b1 {
+      width: 420px;
+      height: 420px;
+      background: var(--violet);
+      top: -140px;
+      left: -100px;
+    }
+    .cta-mesh .b2 {
+      width: 360px;
+      height: 360px;
+      background: var(--crimson);
+      bottom: -140px;
+      right: -80px;
+    }
+    .cta-mesh .b3 {
+      width: 280px;
+      height: 280px;
+      background: var(--gold);
+      top: 20px;
+      right: 20%;
+      opacity: 0.15;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      letter-spacing: 0.06em;
+      color: var(--violet);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .cta-eyebrow .led {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4CAF50;
+      animation: blink 2.4s ease-in-out infinite;
+    }
+
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(32px, 4.2vw, 52px);
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+
+    .cta-sub {
+      font-size: 15.5px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.9;
+    }
+
+    .contact-rows {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 8px;
+    }
+
+    .crow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      padding: 12px 12px 12px 20px;
+    }
+
+    .crow-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    .crow-val {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .copy-btn {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.4);
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(124, 92, 191, 0.08);
+      border-color: var(--violet);
+      color: var(--violet);
+    }
+
+    .copy-btn.copied {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #1A1220;
+    }
+
+    /* ═══════════════════ FOOTER ═══════════════════ */
+    .site-footer {
+      padding: 40px 0 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+    }
+
+    .footer-name .led {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--crimson);
+    }
+
+    .footer-meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 0.03em;
+    }
+
+    /* ═══════════════════ RESPONSIVE ═══════════════════ */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual {
+        max-width: 340px;
+        margin: 0 auto;
+      }
+      .bento {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card.span3 {
+        grid-column: span 2;
+      }
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-card {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero {
+        padding-top: 130px;
+      }
+      .bento {
+        grid-template-columns: 1fr;
+      }
+      .card.span2,
+      .card.span3 {
+        grid-column: span 1;
+      }
+      .hero-actions .btn {
+        flex: 1;
+        justify-content: center;
+      }
+      .cta-card {
+        padding: 52px 22px;
+      }
+      .contact-rows {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .crow {
+        justify-content: space-between;
+      }
+      .float-chip {
+        display: none;
+      }
+      .proj-thumb .placeholder-icon {
+        font-size: 36px;
+      }
+      .proj-thumb .idx {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dotfield"></div>
+  <div class="vignette"></div>
+
+  <!-- FLOATING NAV — ENHANCED -->
+  <div class="nav-wrap">
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-icon">S</span>
+        <span class="led"></span>
+      </div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+      </div>
+      <a href="#contact" class="nav-cta">Let's talk</a>
+    </nav>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="mesh"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal in">
+          <div class="hero-badge"><span class="led"></span> Open to new opportunities</div>
+          <div class="hero-eyebrow-sm">Portfolio · Digital Experience</div>
+          <h1 class="hero-title">Suchakree<br><span class="grad">Sriboonruang</span></h1>
+          <div class="hero-role">Digital Solution Specialist</div>
+          <p class="hero-sub">
+            A Digital Service Innovation graduate now working as a <strong>Digital Solution Specialist</strong>
+            — helping teams modernize business processes and coordinating with external partners on
+            enterprise digital transformation.
+          </p>
+          <div class="hero-actions">
+            <a href="#experience" class="btn primary">View my work ↓</a>
+            <a href="#contact" class="btn">Get in touch</a>
+          </div>
+        </div>
+        <div class="hero-visual reveal in">
+          <div class="photo-card">
+            <img src="IMG_ciel.JPG" alt="Suchakree Sriboonruang" onerror="this.style.display='none'">
+          </div>
+          <div class="float-chip c1">🎓 KMUTT '26</div>
+          <div class="float-chip c2">⚡ ESTP</div>
+          <div class="float-chip c3">📍 Bangkok, TH</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Figma</span><span>HTML / CSS</span><span>Moodle</span><span>Articulate 360</span><span>Jira</span><span>Tableau</span><span>Dynamics NAV</span><span>Kissflow</span><span>Lark</span><span>Microsoft 365</span>
+      <span>Figma</span><span>HTML / CSS</span><span>Moodle</span><span>Articulate 360</span><span>Jira</span><span>Tableau</span><span>Dynamics NAV</span><span>Kissflow</span><span>Lark</span><span>Microsoft 365</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="num">( 01 )</span> ABOUT ME</div>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <div class="bento">
+        <div class="card span2 c-violet reveal">
+          <span class="card-blob"></span>
+          <div class="card-icon">🧭</div>
+          <div class="card-label">Background</div>
+          <div class="card-title">Digital Solution Specialist</div>
+          <div class="card-text">
+            I'm a Digital Service Innovation graduate currently working as a Digital Solution Specialist,
+            where I support enterprise digital transformation and coordinate with external partners to
+            modernize business processes. My path here was shaped by three internships — at Learn
+            Corporation, Sasin School of Management, and Chaopraya Mahanakorn — where I contributed
+            across the full product lifecycle, from requirements analysis and user research through to
+            prototyping and system implementation. I thrive at the intersection of
+            <strong>business objectives</strong> and <strong>user needs</strong>, and I'm always excited
+            to explore new ways technology can create meaningful, high-impact digital experiences.
+          </div>
+        </div>
+        <div class="card c-blue reveal">
+          <span class="card-blob"></span>
+          <div class="card-icon">⚡</div>
+          <div class="card-label">Personality</div>
+          <div class="card-title">ESTP Profile</div>
+          <div class="card-text">
+            I move fast, sit well with ambiguity, and do my sharpest work where analytical rigor meets
+            creative instinct. I respect others' time as much as my own — showing up prepared and
+            keeping things moving without waiting to be told twice.
+          </div>
+        </div>
+        <div class="card c-pink reveal">
+          <span class="card-blob"></span>
+          <div class="card-icon">🎓</div>
+          <div class="card-label">Education</div>
+          <div class="card-title">KMUTT</div>
+          <div class="card-text">
+            Faculty of Information Technology<br>
+            <strong>Digital Service Innovation</strong><br>
+            Class of 2026 · GPAX 3.45 — Second Class Honours
+          </div>
+        </div>
+        <div class="card c-gold reveal">
+          <span class="card-blob"></span>
+          <div class="card-icon">🛠️</div>
+          <div class="card-label">Core Tools</div>
+          <div class="card-title">Toolkit</div>
+          <div class="chip-row">
+            <span class="chip">Figma</span><span class="chip">HTML/CSS</span><span class="chip">Moodle</span>
+            <span class="chip">Articulate 360</span><span class="chip">Jira</span><span class="chip">Tableau</span>
+            <span class="chip">Dynamics NAV</span><span class="chip">Kissflow</span><span class="chip">Lark</span>
+          </div>
+        </div>
+        <div class="card span3 reveal">
+          <div class="card-label">Personal Strengths</div>
+          <div class="chip-row">
+            <span class="chip">🧩 Adaptability</span>
+            <span class="chip">🤝 Collaboration</span>
+            <span class="chip">🗣️ Communication</span>
+            <span class="chip">💡 Problem-Solving</span>
+            <span class="chip">🎨 Creativity (Figma)</span>
+            <span class="chip">⏱️ Time Management</span>
+            <span class="chip">🔍 Technical Mindset</span>
+            <span class="chip">📊 Digital Strategy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience" style="background:var(--bg-alt); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="num">( 02 )</span> WORK HISTORY</div>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="exp-list">
+        <div class="exp-card c-violet reveal">
+          <div>
+            <div class="exp-date">MAY 2026<br>→ PRESENT</div>
+            <span class="exp-badge">Current</span>
+          </div>
+          <div>
+            <div class="exp-role">Digital Solution Specialist</div>
+            <div class="exp-company">Yan Wal Yun Corporation Group Co., Ltd.</div>
+            <p class="exp-text">
+              Drove the organization's digital transformation by leading the transition from manual, paper-based workflows to a structured digital process through the implementation of a Workflow Management System, laying the foundation for scalable and auditable operations. Collaborated closely with internal stakeholders and Vbix, an external transformation partner, to map existing operations into clear process flows — enabling seamless system integration with minimal disruption to day-to-day business continuity. Directed the intake and analysis of business requirements across departments, translating them into tailored, purpose-built workflows on Kissflow that improved process visibility and reduced manual bottlenecks. Additionally, distilled emerging AI trends into practical, actionable insights for the Business Development team, helping bridge the gap between technical innovation and business strategy.
+            </p>
+            <div class="exp-tags"><span class="etag">Digital Transformation</span><span class="etag">Process Flow Documentation</span><span class="etag">Vendor Coordination</span><span class="etag">Trend Analysis</span></div>
+          </div>
+        </div>
+        <div class="exp-card c-blue reveal">
+          <div>
+            <div class="exp-date">NOV 2025<br>→ APR 2026</div>
+            <span class="exp-badge">Internship</span>
+          </div>
+          <div>
+            <div class="exp-role">IT Application Support Intern</div>
+            <div class="exp-company">LEARN Corporation Public Co., Ltd.</div>
+            <p class="exp-text">
+              Managed end-to-end service requests across a multi-platform enterprise ecosystem — including Microsoft Dynamics NAV, Kissflow, Tableau, Jira, and Lark — in a high-demand environment requiring both technical precision and cross-team coordination. Served as the key liaison between business users and technical teams, translating operational needs into actionable solutions and ensuring requests were resolved efficiently without compromising system integrity. Leveraged Kissflow's low-code capabilities to streamline workflows and strengthen access control, reducing manual overhead and improving process governance. Additionally, cleaned and validated datasets in Tableau prior to handoff to the Data team, ensuring downstream analysis was built on accurate, reliable data.
+            </p>
+            <div class="exp-tags"><span class="etag">Dynamics NAV</span><span class="etag">Jira</span><span class="etag">Tableau</span><span class="etag">ERP</span><span class="etag">Kissflow</span></div>
+          </div>
+        </div>
+        <div class="exp-card c-pink reveal">
+          <div>
+            <div class="exp-date">NOV 2024<br>→ OCT 2025</div>
+            <span class="exp-badge">Internship</span>
+          </div>
+          <div>
+            <div class="exp-role">EdTech &amp; Learning Experience Design Intern</div>
+            <div class="exp-company">Sasin Graduate Institute, Chulalongkorn University</div>
+            <p class="exp-text">
+             Managed the performance and usability of Sasin Connect+, ensuring content accuracy and a seamless end-to-end learning experience for a diverse base of executive learners. Conducted learner interviews to uncover pain points and translated those insights into concrete platform improvements, bridging the gap between user feedback and actual implementation. Structured accessible, well-organized course pages in Moodle using HTML to improve navigation and reduce friction across the learning journey. Additionally, designed interactive modules with Articulate 360 to strengthen engagement and knowledge retention — combining instructional design principles with hands-on development to create a more effective learning experience.
+            </p>
+            <div class="exp-tags"><span class="etag">Moodle LMS</span><span class="etag">UX Design</span><span class="etag">HTML/CSS</span><span class="etag">Articulate 360</span></div>
+          </div>
+        </div>
+        <div class="exp-card c-gold reveal">
+          <div>
+            <div class="exp-date">MAY 2024<br>→ JUN 2024</div>
+            <span class="exp-badge">Internship</span>
+          </div>
+          <div>
+            <div class="exp-role">Digital Marketing Intern</div>
+            <div class="exp-company">Chaopraya Mahanakorn Public Company Limited</div>
+            <p class="exp-text">
+              Led end-to-end execution of seasonal campaigns for residential projects, from initial concept development through final delivery. Shaped creative direction in close collaboration with the creative team, and owned on-site production across photography, videography, and event execution — ensuring every touchpoint reflected a consistent brand experience. Additionally, refined website content and UI layout to create a more seamless, intuitive buyer journey, bridging creative storytelling with practical usability improvements.
+            </p>
+            <div class="exp-tags"><span class="etag">Content Strategy</span><span class="etag">Campaign Design</span><span class="etag">Web UI</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS — WITH PLACEHOLDER ICONS -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow"><span class="num">( 03 )</span> SELECTED WORK</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <div class="proj-grid">
+        <!-- Project 01 -->
+        <div class="proj-card reveal">
+          <div class="proj-thumb c-violet">
+            <span class="grad"></span>
+            <!-- 📌 เพิ่ม onload ให้แสดงรูปอัตโนมัติ -->
+            <img src="project01.jpg" alt="Sasin Connect+ Project" class="proj-image loaded" onload="this.classList.add('loaded')">
+            
+            
+          </div>
+          <div class="proj-body">
+            <div class="proj-cat">LMS</div>
+            <div class="proj-title">Sasin Connect+ Learning Content Development</div>
+            <p class="proj-desc">Led the end-to-end migration of course materials into Moodle LMS to support MBA/EMBA programs, ensuring content structure remained consistent and accessible across a diverse cohort of executive learners. Designed and built interactive H5P learning activities to transform static content into engaging, self-paced exercises, and applied custom HTML/CSS to refine page layout, navigation, and overall usability. Beyond the technical execution, this project deepened my understanding of instructional design principles — learning how small UX decisions in an LMS directly affect learner engagement and completion rates, and how to balance visual polish with platform performance constraints.</p>
+            <div class="proj-tags"><span class="ptag">Moodle LMS</span><span class="ptag">H5P</span><span class="ptag">HTML/CSS</span><span class="ptag">UX/UI</span></div>
+          </div>
+        </div>
+
+        <!-- Project 02 -->
+        <div class="proj-card reveal">
+          <div class="proj-thumb c-blue">
+            <span class="grad"></span>
+            <img src="project02.jpg" alt="IT Support Project" class="proj-image loaded" onload="this.classList.add('loaded')">
+            
+            
+          </div>
+          <div class="proj-body">
+            <div class="proj-cat">IT Support</div>
+            <div class="proj-title">IT Application Support (Tier 1)</div>
+            <p class="proj-desc">Served as a key point of contact for triaging cross-platform issues, systematically diagnosing root causes within Microsoft Dynamics NAV to minimize disruption to daily operations. Conducted audits of approval workflows to identify bottlenecks and inconsistencies, then worked to strengthen process reliability across departments. Additionally, produced data reports tracking course progress and completion to support data-informed decision-making for program administrators. This role sharpened my systems-thinking mindset — I learned to approach problems methodically, trace issues back to their source rather than patching symptoms, and communicate technical findings in a way that non-technical stakeholders could act on.</p>
+            <div class="proj-tags"><span class="ptag">ERP</span><span class="ptag">Jira</span><span class="ptag">Data Reporting</span></div>
+          </div>
+        </div>
+
+  
+
+
+        <!-- Project 03 -->
+        <div class="proj-card reveal">
+          <div class="proj-thumb c-violet">
+            <span class="grad"></span>
+            <img src="project03.jpg" alt="Bangkok Business Challenge Project" class="proj-image loaded" onload="this.classList.add('loaded')">
+            
+          </div>
+          <div class="proj-body">
+            <div class="proj-cat">Event Ops</div>
+            <div class="proj-title">Bangkok Business Challenge 2025 — Powered by SCGC</div>
+            <p class="proj-desc">Managed the end-to-end scoring operations for a nationwide competition attended by senior executives, a role that required precision under real-time pressure. Validated judges' evaluations on the spot, cross-checked data for accuracy, and ensured seamless synchronization of scores across systems and stakeholders throughout the live event. Operating in front of a high-profile audience with zero margin for error taught me how to stay composed under pressure, anticipate points of failure before they happen, and build lightweight verification processes that maintain both speed and accuracy — a skill set directly transferable to any operations-critical role.</p>
+            <div class="proj-tags"><span class="ptag">Data Management</span><span class="ptag">System Monitoring</span><span class="ptag">Operations</span></div>
+          </div>
+        </div>
+
+        <!-- Project 04 -->
+        <div class="proj-card reveal">
+          <div class="proj-thumb c-blue">
+            <span class="grad"></span>
+            <img src="project04.jpg" alt="Chaopraya Mahanakorn Project" class="proj-image loaded" onload="this.classList.add('loaded')">
+            
+          </div>
+          <div class="proj-body">
+            <div class="proj-cat">Marketing</div>
+            <div class="proj-title">Chaopraya Mahanakorn Internship Project</div>
+            <p class="proj-desc">Contributed to the design and execution of resident engagement campaigns for real estate projects, developing incentive-based mechanics intended to drive participation and deepen long-term community loyalty. Worked closely with cross-functional teams to translate campaign concepts into actionable activities that resonated with residents' everyday lives. This experience gave me hands-on exposure to behavioral-design thinking — understanding what genuinely motivates people to engage (versus what looks good on paper), and how thoughtful incentive structures can turn one-off participation into lasting community relationships.</p>
+            <div class="proj-tags"><span class="ptag">Facebook Ads</span><span class="ptag">TikTok Ads</span><span class="ptag">Analytics</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="cta-card reveal">
+        <div class="cta-mesh"><span class="b b1"></span><span class="b b2"></span><span class="b b3"></span></div>
+        <div class="cta-inner">
+          <div class="cta-eyebrow"><span class="led"></span> ( 04 ) — CONTACT</div>
+          <h2 class="cta-title">Let's build something great.</h2>
+          <div class="contact-rows">
+            <div class="crow">
+              <span class="crow-label">Email</span>
+              <span class="crow-val" id="val-email">suchakree.ciel@gmail.com</span>
+              <button class="copy-btn" onclick="copyVal('val-email',this)">Copy</button>
+            </div>
+            <div class="crow">
+              <span class="crow-label">Phone</span>
+              <span class="crow-val" id="val-phone">(+66) 61-501-7711</span>
+              <button class="copy-btn" onclick="copyVal('val-phone',this)">Copy</button>
+            </div>
+            <div class="crow">
+              <span class="crow-label">LinkedIn</span>
+              <span class="crow-val" id="val-linkedin">Suchakree Sriboonruang</span>
+              <button class="copy-btn" onclick="copyVal('val-linkedin',this)">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer wrap">
+    <div class="footer-name"><span class="led"></span> Suchakree Sriboonruang</div>
+    <div class="footer-meta">Digital Service Innovation · KMUTT · 2026</div>
+  </footer>
+
+  <script>
+    function copyVal(id, btn) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig;
+          btn.classList.remove('copied'); }, 1600);
+      });
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in');
+          io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
